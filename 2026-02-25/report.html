@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Underwriting Record Layer</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ledger Layer for Enterprise AI</title>
+    <style>
         html, body {
             margin: 0;
             padding: 0;
@@ -64,6 +64,92 @@
             font-size: 0.85rem;
             color: #9ca3af;
         }
+        /* ── Content element spacing (locked) ─────────────────────── */
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+        .content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.75;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+        .content thead th {
+            background: #f9fafb;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .content tbody td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .content tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        .content blockquote {
+            border-left: 3px solid #1a1a1a;
+            padding-left: 1.5rem;
+            font-style: italic;
+            font-size: 1.15em;
+            margin: 2rem 0;
+        }
+        .content details {
+            margin: 2rem 0;
+        }
+        /* Diagram spacing */
+        .diagram-center {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+        .diagram-float-right {
+            float: right;
+            margin: 0.5rem 0 1.5rem 2rem;
+            max-width: 40%;
+        }
+        .diagram-float-left {
+            float: left;
+            margin: 0.5rem 2rem 1.5rem 0;
+            max-width: 40%;
+        }
+        .diagram-float-right + p, .diagram-float-right + ul, .diagram-float-right + ol,
+        .diagram-float-left + p, .diagram-float-left + ul, .diagram-float-left + ol {
+            overflow: hidden;
+        }
+        .diagram-pair {
+            display: flex;
+            gap: 2rem;
+            margin: 2.5rem 0;
+            justify-content: center;
+        }
+        .diagram-pair-item {
+            flex: 1;
+            max-width: 45%;
+            text-align: center;
+        }
+        pre.mermaid {
+            background: transparent !important;
+            border: none !important;
+            text-align: center;
+        }
+        /* Prevent adjacent heavy elements from colliding */
+        .content table + .diagram-center,
+        .content table + .diagram-float-right,
+        .content table + .diagram-float-left,
+        .content table + .diagram-pair,
+        .content .diagram-center + table,
+        .content .diagram-center + .diagram-center,
+        .content blockquote + table,
+        .content table + blockquote {
+            margin-top: 3rem;
+        }
         .author-section {
             display: flex;
             gap: 1.5rem;
@@ -120,43 +206,95 @@
             color: #fff;
         }
 
-  @font-face { font-family: 'Framehead Roman'; src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93d8c_FrameHead-Roman-Web.woff2') format('woff2'); font-weight: normal; font-style: normal; }
-  @font-face { font-family: 'Framehead Roman'; src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93d8b_FrameHead-Italic-Web.woff2') format('woff2'); font-weight: normal; font-style: italic; }
-  @font-face { font-family: 'Sofia Pro'; src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93da8_SofiaProRegular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
-  @font-face { font-family: 'Sofia Pro'; src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93da2_SofiaProBold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
-  body { background: #ffffff; color: #1a1a1a; font-family: 'Sofia Pro', system-ui, sans-serif; line-height: 1.75; margin: 0; }
-  
-  
-  h1 { font-family: 'Framehead Roman', Georgia, serif; font-size: 56px; font-weight: 400; line-height: 1.15; text-align: center; margin: 0; }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  h2 { font-size: 1.5rem; font-weight: 700; margin-top: 3rem; }
-  p { margin-bottom: 1.5rem; }
-  blockquote { border-left: 3px solid #1a1a1a; padding-left: 1.5rem; font-style: italic; font-size: 1.15em; margin: 2rem 0; }
-  table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
-  th { background: #f9fafb; padding: 0.75rem; }
-  td { padding: 0.75rem; }
-  tbody tr:nth-child(odd) { background: #fff; }
-  tbody tr:nth-child(even) { background: #f9fafb; }
-  td, th { border-bottom: 1px solid #e5e7eb; }
-  .diagram-center { margin: 2rem 0; text-align: center; }
-  pre.mermaid { background: transparent !important; border: none !important; text-align: center; }
-
+        @font-face {
+            font-family: 'Framehead Roman';
+            src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93d8c_FrameHead-Roman-Web.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Framehead Roman';
+            src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93d8b_FrameHead-Italic-Web.woff2') format('woff2');
+            font-weight: normal;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Sofia Pro';
+            src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93da8_SofiaProRegular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Sofia Pro';
+            src: url('https://cdn.prod.website-files.com/6977781bbe36a48562c93d44/6977781bbe36a48562c93da2_SofiaProBold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        body {
+            background: #ffffff;
+            color: #1a1a1a;
+            font-family: 'Sofia Pro', system-ui, sans-serif;
+            line-height: 1.75;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        h1 {
+            font-family: 'Framehead Roman', Georgia, serif;
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1.15;
+            text-align: center;
+            margin: 0;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+        }
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .bold-thesis {
+            font-size: 1.2em;
+            margin: 2rem 0;
+        }
+        
+        th {
+            background: #f9fafb;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        td {
+            padding: 0.5rem;
+            background: #fff;
+        }
+        tr:nth-child(even) td {
+            background: #f9fafb;
+        }
+        tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
     </style>
 
-    <meta property="og:title" content="The Underwriting Record Layer" />
+    <meta property="og:title" content="The Ledger Layer for Enterprise AI" />
     <meta property="og:description" content="Weekly incubation report from Primary OS" />
     <meta property="og:image" content="https://primary-os.github.io/reports/2026-02-25/thumbnail.png" />
     <meta property="og:url" content="https://primary-os.github.io/reports/2026-02-25/report.html" />
@@ -168,14 +306,14 @@
         <img src="data:image/png;base64,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" alt="Primary VC logo">
     </div>
     <div class="title-wrapper">
-        <h1 class="title">The Underwriting Record Layer</h1>
-        <p class="subtitle">AI deal systems win by owning assumptions, decisions, and outcomes.</p>
+        <h1 class="title">The Ledger Layer for Enterprise AI</h1>
+        <p class="subtitle"></p>
     </div>
     <hr class="divider">
     <div class="title-wrapper">
         <p class="date">Generated on February 25, 2026</p>
     </div>
-    <div class="gradient-bar" style="background: linear-gradient(135deg, #a8dadc, #457b9d, #1d3557);"></div>
+    <div class="gradient-bar" style="background: linear-gradient(to right, #6D8299, #D1C7B7, #8C8371);"></div>
     <div class="author-section">
         <img class="author-photo" src="data:image/png;base64,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" alt="Incubation Engine">
         <div class="author-info">
@@ -186,132 +324,145 @@
         </div>
     </div>
     <div class="content">
-  <p>Real estate “deal management” is having an AI moment because the work is still run the way it was a decade ago: broker emails, PDF offering memoranda (OMs), rent rolls, trailing-12 financials (T12s), and underwriting models scattered across inboxes, Excel, and shared drives. A recent conversation with Planisphere surfaced the same pattern we keep hearing across the market: firms don’t just want faster extraction or prettier dashboards—they want a reliable way to move from inbound deal noise to an investment committee (IC) decision without losing provenance, version history, or accountability. This report looks at whether there’s a startup worth incubating in that gap, and if so, what we would actually build: an “underwriting record layer” that sits above Excel and Argus, becomes the system of record for deal decisions, and compounds into a proprietary decision-and-outcomes dataset competitors can’t easily copy.</p>
+<p>Enterprises are no longer debating whether to deploy generative AI; they’re struggling to control what they’ve already unleashed. In recent conversations at Primary, the same anxieties kept surfacing: AI is sprawling across copilots, internal agents, and point tools, while leadership asks for ROI numbers that can survive a CFO’s scrutiny and security teams ask, plainly, “Where is our data going?” This report examines whether there’s a startup worth incubating in the emerging category of <strong>enterprise AI control planes</strong>—software that sits above models and enterprise systems to govern AI behavior, route work, and measure impact—and argues that the best incubation wedge is an <strong>“AI ROI + Governance ledger”</strong> that becomes the system of record for AI value and risk. You’ll come away with three concrete startup concepts, a ranking, and a recommendation for what Primary should build first—and what must be true for it to become defensible.</p>
 
-  <p>The conclusion: yes, there is an incubation-worthy company here—but not as a generic “AI copilot for real estate.” The defensible opportunity is an integration-first system that captures the canonical deal narrative (assumptions, comps, memos, approvals, diligence findings, and post-close variance) with citations and audit trails. The wedge is AI-native intake and normalization; the moat is switching costs plus a cornered resource: a unique corpus of “what we believed, what we did, and what happened.”</p>
+    <h2>The customer isn’t “the enterprise.” It’s the person stuck between the CFO and the CISO.</h2>
+    <p>The buyer for an AI control plane is often described as “the enterprise,” but in practice it’s a small set of people who have become the blast shield for everyone else’s AI experimentation: the <strong>AI program lead</strong> (sometimes in IT), the <strong>platform engineering lead</strong> (who has to make agents work reliably), the <strong>security team</strong> (who has to answer for data exposure), and the <strong>finance partner</strong> (who has to defend the spend).</p>
 
-  <h2>The customer’s world: high-stakes decisions built on brittle workflows</h2>
+    <p>Their world is already crowded. A single company might run Microsoft 365 and Copilot, Salesforce, ServiceNow, Jira, Slack, Snowflake, and a mix of model access (OpenAI, Anthropic, Azure OpenAI, Amazon Bedrock, Google Vertex). On top of that sits a growing “AI middleware” layer: prompt tooling, agent frameworks, retrieval-augmented generation (RAG—fetching relevant internal documents at runtime), evaluation tools (tests for model quality and safety), and observability (monitoring).</p>
 
-  <p>The core buyer is the acquisitions organization at a real estate private equity (REPE) firm, developer, or large operator. Their job is to review a large volume of opportunities, quickly reject the majority, and move a small set through underwriting, diligence, financing, and closing. The output that matters is not just a model; it’s a decision that can survive scrutiny from an IC, lenders, lawyers, and ultimately limited partners (LPs)—the institutions investing in a fund.</p>
+    <p>This market structure matters because it creates the opening for a neutral “above-the-fray” layer. No single incumbent benefits from giving the enterprise a cross-vendor truth about AI performance, cost, and risk—especially if that truth encourages the customer to reduce usage or switch vendors.</p>
 
-  <p>The modern “stack” is a patchwork. Excel remains the lingua franca for underwriting. Argus (a widely used commercial real estate cash-flow modeling tool) may be involved for certain asset types. Yardi, MRI, and RealPage often sit downstream in property management and accounting, holding the operational “actuals.” Deal workflow software like Dealpath or generic CRMs like Salesforce may track pipeline, but they typically rely on manual entry, and they rarely hold the authoritative assumptions and supporting evidence behind a deal decision.</p>
+    <h2>What’s broken: ROI is anecdotal, governance is fragmented, and “agent reliability” is becoming an operational tax.</h2>
+    <p>Three failure modes show up repeatedly when companies try to move from pilots to production.</p>
 
-  <p>This context matters because it makes clear what an AI system must do to become durable: it can’t just produce an answer. It has to become the place teams go to understand <em>what is true right now</em>, <em>why we believe it</em>, and <em>who approved it</em>.</p>
+    <p>First, <strong>ROI is hard to prove in finance-grade terms</strong>. Most teams can show adoption metrics (users, prompts, sessions) but can’t tie usage to business outcomes like tickets resolved, sales pipeline influenced, or cycle time reduced. Without attribution, AI spend becomes politically fragile—easy to cut and hard to scale.</p>
 
-  <h2>What’s broken today (and why point solutions don’t fix it)</h2>
+    <p>Second, <strong>governance is fragmented across tools</strong>. Each copilot or model gateway has its own policies, retention settings, and logging. Legal and security ask where prompts are stored, what data leaves the company, and what controls exist—and the honest answer is often “it depends which team’s tool you mean.” The result is either blanket bans (“shadow AI” grows anyway) or slow, vendor-by-vendor approvals that throttle adoption.</p>
 
-  <p>The pain is not abstract; it’s repetitive labor and avoidable risk.</p>
+    <p>Third, <strong>integrations are brittle and permissioning is messy</strong>. Agents break when APIs change, tokens expire, or fields get renamed in Salesforce. Meanwhile, least-privilege access—giving an agent only the minimum permissions it needs—doesn’t map cleanly onto traditional identity systems built for humans. Teams fall back on shared service accounts and broad OAuth scopes, which increases audit risk and blast radius.</p>
 
-  <p>First, there is no real system of record. Deal status lives in scattered email threads, folders, and spreadsheet versions, which makes it hard to answer basic questions like “Where is this deal at?” or “Which assumptions did we present to IC?” In practice, organizations paper over this with naming conventions, weekly pipeline calls, and manual CRM updates—workarounds that don’t scale and don’t produce an audit trail.</p>
+    <p>Together these issues create a familiar enterprise pattern: high potential value, followed by “services creep.” Companies hire consultants or build internal glue code to make it all work, and then they’re stuck babysitting fragile workflows that never become a durable platform.</p>
 
-  <p>Second, underwriting inputs are manual and brittle. Rent rolls and T12s arrive in inconsistent formats. Analysts spend hours cleaning, mapping, and checking data before they can even begin thinking about the investment. Errors are costly because credibility matters: one misread reimbursement line or unit mix mistake can undermine trust in the whole package.</p>
+    <h2>Why now: AI is finally instrumentable—and enterprises are finally accountable.</h2>
+    <p>Two years ago, it was difficult to build a control plane that could credibly measure and govern AI across stacks because the technical primitives weren’t mature. That’s changing.</p>
 
-  <p>Third, diligence is document chaos. Data rooms (Box, SharePoint, Dropbox) become dumping grounds of hundreds of files. Critical findings—lease clauses, capital expenditure (capex) items, environmental issues—often do not flow back into the underwriting model in a structured way. Decisions get made, but the chain of evidence is weak, and post-mortems don’t compound into better future decisions.</p>
+    <p>One enabling shift is the rise of <strong>standardized telemetry patterns</strong> for generative AI—an “OpenTelemetry-like” approach where AI applications can emit consistent events (model call, tool call, token spend, retrieval, outcome) into existing monitoring and security systems. That means a startup can plug into what enterprises already run (observability tools, security information and event management—SIEM) rather than demanding bespoke instrumentation per team.</p>
 
-  <p>Finally, the post-close handoff is leaky. Underwriting assumptions rarely map cleanly to what property management and accounting systems report later. Without a “model vs. actual” loop, firms repeat mistakes and fail to build an institutional memory that improves performance.</p>
+    <p>Another shift is that <strong>tool-using models are now production-capable</strong>. With structured outputs and function calling, agents can be bounded by schemas, validators, and approvals. This makes enforcement possible: a control plane can define “deny-by-default” actions, require human approval for risky steps, and log every action as an auditable trail.</p>
 
-  <blockquote>
-    The moat is not “our AI is better.” The moat is “we are where decisions happen—and we learn from what happens next.”
-  </blockquote>
+    <p>Finally, the organizational timing is right. AI budgets are moving from “innovation experiments” to recurring line items. As scrutiny rises, the winning internal narrative is no longer “look what the model can do,” but “here is what we got, what it cost, and what risk we reduced.”</p>
 
-  <p>These failures set up the central product requirement: AI has to be tied to workflow state, provenance, and feedback. Otherwise it becomes a disposable feature—easy to demo, easy to churn.</p>
+    <h2>The startup opportunity: become the system of record for AI actions, outcomes, and controls.</h2>
+    <p>A real control plane can’t just be a dashboard. The defensible version sits in the <strong>critical path</strong>: routing AI work, enforcing policy, and producing audit logs that Security and Compliance actually rely on. That is how switching costs form—not because it’s hard to migrate code, but because it’s risky to rip out the system that proves you’re in control.</p>
 
-  <h2>Why now: the tech is finally good enough, and the orgs are newly motivated</h2>
+    <h3><strong>LedgerAI Control Plane</strong> — One system of record for AI ROI, policy, and audit.</h3>
+    <ul>
+        <li><strong>Who it serves:</strong> AI program leads in IT, with Security + Finance as co-owners.</li>
+        <li><strong>Wedge:</strong> “AI showback + audit logging in two weeks”—instrument AI usage across key systems (ServiceNow, Salesforce, Zendesk, Slack) and produce an auditable ROI ledger: cost per workflow, outcome deltas, and control evidence.</li>
+        <li><strong>Moat:</strong> <strong>Switching costs</strong> once embedded into audit trails, budget governance, and workflow approvals; plus a <strong>cornered resource</strong> over time: a cross-enterprise benchmark dataset mapping AI actions to outcomes by role and industry (with explicit customer rights for de-identified telemetry).</li>
+        <li><strong>Key risk:</strong> ROI attribution credibility. If the ledger feels like disputed analytics (“would the agent have helped anyway?”), it becomes shelfware.</li>
+    </ul>
 
-  <p>Two shifts make this feasible now in a way it wasn’t even two years ago.</p>
+    <h3><strong>ModelRouter</strong> — Neutral FinOps + quality-based routing across models.</h3>
+    <ul>
+        <li><strong>Who it serves:</strong> AI platform teams and FinOps (cloud financial management) leaders at high-volume AI users.</li>
+        <li><strong>Wedge:</strong> Drop-in gateway that reduces inference spend via routing (choose the cheapest model that meets a quality threshold), caching, rate limits, and budgets—then reports “cost per deflected ticket” or “cost per processed document.”</li>
+        <li><strong>Moat:</strong> <strong>Counter-positioning</strong>: model and cloud vendors are disincentivized to optimize customers away from usage; a neutral router can. Over time, routing heuristics tied to real workloads become proprietary.</li>
+        <li><strong>Key risk:</strong> Gateway commoditization. Many vendors can offer routing inside their ecosystem; the product must win on cross-vendor neutrality and provable quality.</li>
+    </ul>
 
-  <p>On the technology side, multimodal models and modern document understanding can extract structure from messy real estate artifacts—PDFs, scanned leases, Excel rent rolls—well enough to automate first-pass normalization. Just as important, retrieval and citation workflows can ground outputs in source documents, which is essential for “IC-safe AI.”</p>
+    <h3><strong>PolicyGraph</strong> — Identity and access management built for agents.</h3>
+    <ul>
+        <li><strong>Who it serves:</strong> CISOs and identity teams who are now responsible for “non-human actors” taking actions in core systems.</li>
+        <li><strong>Wedge:</strong> “Okta for agents”: create agent identities with least-privilege scopes, approval workflows, and tamper-evident audit trails across major SaaS tools (ServiceNow, Jira, Salesforce, Workday, NetSuite).</li>
+        <li><strong>Moat:</strong> High <strong>switching costs</strong> once policies and approvals are embedded, plus <strong>scale economies</strong> if the company builds and maintains the best connector + permission template library.</li>
+        <li><strong>Key risk:</strong> Incumbent response. Okta, Microsoft, CyberArk, and others can bundle agent authorization once demand is clear; the integration surface is deep and failure-intolerant.</li>
+    </ul>
 
-  <p>On the market side, real estate teams are under pressure. Higher rates and tighter capital markets have raised the bar for diligence and reporting while keeping headcount lean. That combination increases willingness to pay for tools that reduce cycle time, prevent mistakes, and produce defensible documentation.</p>
+    <h2>What we’d actually build first: the ROI ledger that turns governance into a finance artifact.</h2>
+    <p>If Primary incubates in this category, the most compelling build is a control plane that starts with <strong>ROI + auditability</strong>—then expands into enforcement. The reason is go-to-market: “governance” alone often lands in long security sales cycles and competes with bundled features; “cost savings” can be quick but crowded. <strong>Finance-grade ROI reporting</strong> is the uncommon pain that pulls in CIO, CFO, and CISO at once—because it’s simultaneously about budget defense, operational prioritization, and risk.</p>
 
-  <p>This timing matters because it suggests a narrow window: incumbents can and will add “AI features,” but many are structurally oriented around manual entry, services-heavy implementations, or downstream accounting workflows. That creates an opening for a product that is AI-native <em>and</em> designed to become the authoritative record of deal decisions.</p>
+    <p>The product should behave like a ledger: immutable event capture, clear attribution, and audit-ready evidence. It should also be opinionated about measurement: baselines, confidence intervals, and versioning (which model/prompt/workflow produced which outcome). Done right, it becomes the canonical place leadership looks for the answer to: “What did we buy, what did it do, and what could go wrong?”</p>
 
-  <h2>The defensible thesis: win by becoming the underwriting workflow hub</h2>
+    <div class="diagram-center">
+        <pre class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant A as Agent
+    participant CP as ControlPlane
+    participant M as Model
+    participant S as System
+    participant F as FinanceSecurity
+    U->>A: Request
+    A->>CP: Tool request
+    CP->>M: Policy check
+    M-->>CP: Output
+    CP->>S: Execute creds
+    S-->>CP: Result audit
+    CP-->>F: Compliance ledger
+    CP-->>A: Approved result
+</pre>
+    </div>
+    <p>This sequence matters because it clarifies where defensibility comes from: the control plane is not “observing” after the fact; it is authorizing, routing, and logging in the moment.</p>
 
-  <p>Planisphere’s framing points to the right strategic north star: defensibility in this category doesn’t come from the model. It comes from owning the underwriting workflow and the resulting data.</p>
+    <h2>Scorecard: where incubation looks most promising</h2>
+    <p>The key takeaway from the scoring is that two concepts can be “big markets” yet still be bad incubations if incumbents can bundle them quickly. The best incubation candidate is the one that (1) can wedge in fast, (2) becomes critical-path infrastructure, and (3) builds a compounding data asset without requiring data that customers won’t share.</p>
 
-  <p>In Seven Powers terms, the near-term power available is counter-positioning—an AI-first “autopilot underwriting” approach is genuinely hard for legacy platforms to ship quickly without disrupting their user experience and implementation economics. But the durable powers are switching costs and a cornered resource. Switching costs accrue when the product becomes the canonical place where pipeline triage rationale, underwriting assumptions, scenario outputs, and IC memos live. The cornered resource emerges when that workflow produces a proprietary dataset linking documents and assumptions to decisions and outcomes: screened vs. bid, win/loss, negotiated terms, and ultimately performance versus underwriting.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Concept</th>
+                <th style="text-align:right">Market Size</th>
+                <th style="text-align:right">Defensibility</th>
+                <th style="text-align:right">Timing</th>
+                <th style="text-align:right">Founder-Market Fit</th>
+                <th style="text-align:right">Overall Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ModelRouter FinOps + Quality Routing</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+                <td>LedgerAI Control Plane [ROI + audit + policy]</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">9</td>
+            </tr>
+            <tr>
+                <td>PolicyGraph IAM for Agents</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">9</td>
+            </tr>
+            <tr>
+                <td>EvalOps CI for Enterprise AI</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">8</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><em>Scoring is 1–3 (higher is better). “Timing” reflects readiness of enabling primitives and buyer urgency; “Founder-Market Fit” reflects how demanding the domain is (security/enterprise integrations favor prior experience).</em></p>
 
-  <blockquote>
-    RecordLayer — A deal system of record that ingests, normalizes, and audits every deal artifact.
-  </blockquote>
+    <h2>Recommendation: incubate LedgerAI, but design it to become an enforcement point.</h2>
+    <p>Primary should pursue incubation in enterprise AI control planes, with <strong>LedgerAI</strong> as the most strategically coherent entry: start by making ROI and auditability real, then expand into policy enforcement, routing, and approvals. The category is crowded, but defensibility is available if the product becomes the <strong>system of record</strong> for AI governance and value—not another prompt tool—and if it lands inside multiple production workflows per customer (the milestone to watch is 5–10 live workflows with audit logs referenced by Security/Compliance).</p>
 
-  <p>A key risk follows directly: if the product remains a thin AI layer that exports everything back to Excel/Argus and never becomes the “source of truth,” it will be replicable by internal analyst teams using general-purpose models—or bundled by incumbents.</p>
+    <p>The right founding team looks less like “LLM app builders” and more like <strong>enterprise infrastructure operators</strong>: someone who has shipped security- and compliance-adjacent platform software, built integrations into systems like ServiceNow/Salesforce, and can sell to a three-headed buyer (IT + Security + Finance) without turning the company into a services shop.</p>
 
-  <h2>What we’d build: three concepts, one coherent platform strategy</h2>
-
-  <p>The market supports multiple entry points, but the best incubation path is to start with a system-of-record wedge and expand into outcome loops. Here are three concept shapes that fit that strategy.</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Concept</th>
-        <th>Market Size</th>
-        <th>Defensibility</th>
-        <th>Timing</th>
-        <th>Founder-Market Fit</th>
-        <th>Overall Score (10)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>RecordLayer</b></td>
-        <td>High</td>
-        <td>High</td>
-        <td>High</td>
-        <td>Medium-High</td>
-        <td><b>9</b></td>
-      </tr>
-      <tr>
-        <td>DiligenceLoop</td>
-        <td>Medium-High</td>
-        <td>High</td>
-        <td>High</td>
-        <td>High</td>
-        <td><b>8</b></td>
-      </tr>
-      <tr>
-        <td>ActualsEngine</td>
-        <td>High</td>
-        <td>High</td>
-        <td>Medium-High</td>
-        <td>High</td>
-        <td><b>8</b></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="diagram-center">
-    <pre class="mermaid">
-graph LR
-A[Email and Data Room] --> B[Intake and Provenance]
-B --> C[Underwriting Graph]
-C --> D[Workflow and Approvals]
-D --> E[IC Memo and Exports]
-E --> F[Outcomes and Actuals]
-F --> C
-    </pre>
-  </div>
-
-  <h2>Scorecard: which concept is best to incubate?</h2>
-
-  <p>The key takeaway from the scoring is that the “system of record” wedge ranks highest because it is the most direct path to switching costs and the data asset. Diligence and post-close loops are powerful, but they become much more defensible—and easier to sell—once the record layer exists.</p>
-
-  <h2>What “defensibility” would look like in practice (and what to diligence early)</h2>
-
-  <p>Because this category is vulnerable to becoming a feature, the proof points we should demand are behavioral, not demo-based.</p>
-
-  <p>A real signal that switching costs are forming is when customers route the majority of new deals through the product first—before spreadsheets get spun up—and when the canonical assumptions and decision log live in the system even if models remain in Excel/Argus. Quantitatively, a strong bar would be a base of ~10 deeply active customers where more than 60% of new deals enter through the platform, paired with 12+ month gross retention above 95% and net retention above 120% driven by workflow expansion.</p>
-
-  <p>The second signal is data rights and measurable lift. If the product can contract for anonymized decision/outcome data and show improvement in predictions like “IC-approved” or “win likelihood at price X” versus public data baselines, it’s starting to build a cornered resource. That’s the compounding asset: competitors can copy interfaces, but they can’t copy years of labeled decisions and post-close variance.</p>
-
-  <h2>Recommendation: incubate the underwriting record layer</h2>
-
-  <p>Primary should consider incubating <strong>RecordLayer</strong> as the initial product, designed explicitly as the “underwriting record layer” above Excel and Argus. The first move is to win deal intake and provenance—email/data room ingestion, normalized fields with confidence scores, and citations—then expand into IC memo automation and approvals, and only then push into diligence loops and post-close variance.</p>
-
-  <p>The founder profile that fits is not a generic AI builder. We’d want someone who has lived the workflow (acquisitions, asset management, development ops, or CRE lending) and can pair it with strong systems and integration engineering. The first design partners should be mid-market but sophisticated teams where cycle time and staffing constraints are acute, and where leadership is willing to standardize process.</p>
-
-  <p>The gating risks are trust and “system-of-record gravity.” If we can’t make outputs citation-perfect, adoption will stall at “nice-to-have research.” And if we don’t own the canonical assumptions and decision history, incumbents or internal tooling will flatten us into a feature. The incubation plan should therefore start with an uncompromising audit trail, tight integrations, and explicit mechanisms to capture decisions and outcomes—because that is where the company’s defensibility is actually built.</p>
+    <p>The first move should be a narrowly-scoped product that can be deployed in under two weeks: <strong>AI showback + audit logging</strong> for one or two high-throughput workflows (customer support and internal IT service desks are ideal because outcomes are measurable). If we can’t produce a CFO-credible ROI narrative quickly—and prove we can sit in the critical path without breaking workflows—this market will punish us with long cycles and feature bundling. If we can, we have a plausible path to becoming “the Datadog + Okta layer” for enterprise AI work.</p>
 </div>
         <footer class="footer"><p>Primary VC &middot; Incubation Engine</p></footer>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
