@@ -131,21 +131,27 @@
       document.getElementById("spinner").style.display = "none";
     }
 
-    // Tell the extension we're ready
-    // The extension's content script on this page will pick this up
-    window.postMessage({
-      type: "CLAUDE_CHAT_OPEN",
-      prompt: config.prompt,
-      thinking: config.thinking,
-      submit: config.submit,
-    }, "*");
-
-    // Listen for extension response
+    // Wait for the extension to announce itself, then send the open request
     let extensionResponded = false;
 
+    function sendOpenRequest() {
+      if (extensionResponded) return;
+      extensionResponded = true;
+      document.getElementById("status").textContent = "Opening Claude in the background...";
+      window.postMessage({
+        type: "CLAUDE_CHAT_OPEN",
+        prompt: config.prompt,
+        thinking: config.thinking,
+        submit: config.submit,
+      }, "*");
+    }
+
     window.addEventListener("message", (e) => {
+      // Extension announces it's ready
+      if (e.data?.type === "CLAUDE_CHAT_EXTENSION_READY") {
+        sendOpenRequest();
+      }
       if (e.data?.type === "CLAUDE_CHAT_ACK") {
-        extensionResponded = true;
         document.getElementById("status").textContent = "Opening Claude in the background...";
       }
       if (e.data?.type === "CLAUDE_CHAT_SUBMITTED") {
@@ -167,15 +173,22 @@
       }
     });
 
-    // Fallback if extension doesn't respond within 3 seconds
-    setTimeout(() => {
-      if (!extensionResponded && config.prompt) {
-        document.getElementById("spinner").style.display = "none";
-        document.getElementById("title").textContent = "Extension not detected";
-        document.getElementById("status").textContent = "";
-        showFallback();
+    // Also poll for the extension in case we missed the announcement
+    let checkCount = 0;
+    const checkInterval = setInterval(() => {
+      if (extensionResponded) { clearInterval(checkInterval); return; }
+      checkCount++;
+      window.postMessage({ type: "CLAUDE_CHAT_CHECK" }, "*");
+      if (checkCount >= 10) {
+        clearInterval(checkInterval);
+        if (!extensionResponded && config.prompt) {
+          document.getElementById("spinner").style.display = "none";
+          document.getElementById("title").textContent = "Extension not detected";
+          document.getElementById("status").textContent = "";
+          showFallback();
+        }
       }
-    }, 3000);
+    }, 500);
 
     function showFallback() {
       document.getElementById("fallback").classList.add("visible");
