@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opening Claude...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 480px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+    }
+    .logo {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.5rem;
+      background: #1e293b;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #f8fafc;
+    }
+    .status {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #334155;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 1.5rem auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .fallback {
+      display: none;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #1e293b;
+      border-radius: 8px;
+    }
+    .fallback.visible { display: block; }
+    .fallback p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 0.25rem;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #475569;
+      color: #94a3b8;
+    }
+    .btn-secondary:hover { border-color: #64748b; color: #e2e8f0; }
+    .copied {
+      color: #22c55e;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">P</div>
+    <h1 id="title">Opening Claude...</h1>
+    <p class="status" id="status">Preparing your conversation</p>
+    <div class="spinner" id="spinner"></div>
+
+    <div class="fallback" id="fallback">
+      <p>The Claude Context Loader extension is required to auto-open conversations. Install it or copy the prompt manually.</p>
+      <button class="btn" id="copy-btn">Copy Prompt</button>
+      <a class="btn btn-secondary" id="manual-link" href="https://claude.ai/new" target="_blank">Open Claude</a>
+      <p class="copied" id="copied-msg">Copied to clipboard!</p>
+    </div>
+  </div>
+
+  <script>
+    // Parse params from URL hash
+    // Format: #prompt=...&thinking=true
+    function parseHash() {
+      const hash = window.location.hash.slice(1); // remove #
+      const params = new URLSearchParams(hash);
+      return {
+        prompt: params.get("prompt") || "",
+        thinking: params.get("thinking") === "true",
+        submit: params.get("submit") !== "false", // default true
+      };
+    }
+
+    const config = parseHash();
+
+    if (!config.prompt) {
+      document.getElementById("title").textContent = "No prompt provided";
+      document.getElementById("status").textContent = "This link appears to be invalid.";
+      document.getElementById("spinner").style.display = "none";
+    }
+
+    // Tell the extension we're ready
+    // The extension's content script on this page will pick this up
+    window.postMessage({
+      type: "CLAUDE_CHAT_OPEN",
+      prompt: config.prompt,
+      thinking: config.thinking,
+      submit: config.submit,
+    }, "*");
+
+    // Listen for extension response
+    let extensionResponded = false;
+
+    window.addEventListener("message", (e) => {
+      if (e.data?.type === "CLAUDE_CHAT_ACK") {
+        extensionResponded = true;
+        document.getElementById("status").textContent = "Opening Claude in the background...";
+      }
+      if (e.data?.type === "CLAUDE_CHAT_SUBMITTED") {
+        document.getElementById("title").textContent = "Claude is thinking";
+        document.getElementById("status").textContent = "Switching to your conversation...";
+      }
+      if (e.data?.type === "CLAUDE_CHAT_DONE") {
+        document.getElementById("title").textContent = "Done!";
+        document.getElementById("status").textContent = "Your Claude conversation is ready.";
+        document.getElementById("spinner").style.display = "none";
+        // Close this tab after a short delay
+        setTimeout(() => window.close(), 1500);
+      }
+      if (e.data?.type === "CLAUDE_CHAT_ERROR") {
+        document.getElementById("title").textContent = "Something went wrong";
+        document.getElementById("status").textContent = e.data.error || "Could not open Claude.";
+        document.getElementById("spinner").style.display = "none";
+        showFallback();
+      }
+    });
+
+    // Fallback if extension doesn't respond within 3 seconds
+    setTimeout(() => {
+      if (!extensionResponded && config.prompt) {
+        document.getElementById("spinner").style.display = "none";
+        document.getElementById("title").textContent = "Extension not detected";
+        document.getElementById("status").textContent = "";
+        showFallback();
+      }
+    }, 3000);
+
+    function showFallback() {
+      document.getElementById("fallback").classList.add("visible");
+
+      // Set manual link with ?q= param
+      const claudeUrl = "https://claude.ai/new?q=" + encodeURIComponent(config.prompt);
+      document.getElementById("manual-link").href = claudeUrl;
+    }
+
+    document.getElementById("copy-btn")?.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(config.prompt);
+      document.getElementById("copied-msg").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("copied-msg").style.display = "none";
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
