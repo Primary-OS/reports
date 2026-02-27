@@ -142,8 +142,8 @@
 <body>
   <div class="container">
 
-    <!-- Time-of-day greeting -->
-    <p class="greeting" id="greeting">Good afternoon</p>
+    <!-- Greeting -->
+    <p class="greeting" id="greeting">Moving you to an ideation session on Claude.</p>
 
     <!-- Logo lockup -->
     <div class="logo-lockup">
@@ -178,11 +178,6 @@
   </div>
 
   <script>
-    // Time-of-day greeting
-    const hour = new Date().getHours();
-    const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
-    document.getElementById("greeting").textContent = greeting;
-
     // Parse params from URL hash
     function parseHash() {
       const hash = window.location.hash.slice(1);
