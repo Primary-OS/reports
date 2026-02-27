@@ -4,91 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Opening Claude...</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f5f0ea;
+      color: #3a2e28;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
     }
+
     .container {
       max-width: 480px;
       width: 100%;
       padding: 2rem;
       text-align: center;
     }
-    .logo {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 1.5rem;
-      background: #1e293b;
-      border-radius: 12px;
+
+    /* Time-of-day greeting */
+    .greeting {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #3a2e28;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* Logo lockup: Claude asterisk × Primary wordmark */
+    .logo-lockup {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
     }
-    h1 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: #f8fafc;
+
+    .claude-asterisk {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
     }
+
+    .connector {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #b8a090;
+      line-height: 1;
+    }
+
+    .primary-logo {
+      height: 28px;
+      width: auto;
+      opacity: 0.85;
+    }
+
+    /* Status text */
     .status {
-      color: #94a3b8;
       font-size: 0.9rem;
-      margin-bottom: 2rem;
+      color: #9c8070;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
     }
+
+    /* Spinner */
     .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid #334155;
-      border-top-color: #3b82f6;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #ddd5ca;
+      border-top-color: #c96442;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 1.5rem auto;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 2rem;
     }
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+
+    /* Fallback */
     .fallback {
       display: none;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       padding: 1.5rem;
-      background: #1e293b;
-      border-radius: 8px;
+      background: #ede7df;
+      border-radius: 10px;
     }
+
     .fallback.visible { display: block; }
+
     .fallback p {
-      color: #94a3b8;
+      color: #7a6a60;
       font-size: 0.85rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
     }
+
     .btn {
       display: inline-block;
-      padding: 0.6rem 1.5rem;
-      background: #3b82f6;
-      color: white;
+      padding: 0.55rem 1.4rem;
+      background: #3a2e28;
+      color: #f5f0ea;
       border: none;
       border-radius: 6px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s;
-      margin: 0.25rem;
+      transition: opacity 0.15s;
+      margin: 0.2rem;
     }
-    .btn:hover { background: #2563eb; }
+
+    .btn:hover { opacity: 0.8; }
+
     .btn-secondary {
       background: transparent;
-      border: 1px solid #475569;
-      color: #94a3b8;
+      border: 1px solid #c4b0a0;
+      color: #7a6a60;
     }
-    .btn-secondary:hover { border-color: #64748b; color: #e2e8f0; }
+
+    .btn-secondary:hover { border-color: #9c8070; color: #3a2e28; opacity: 1; }
+
     .copied {
-      color: #22c55e;
+      color: #7a9070;
       font-size: 0.8rem;
       margin-top: 0.75rem;
       display: none;
@@ -97,11 +141,34 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo">P</div>
-    <h1 id="title">Opening Claude...</h1>
+
+    <!-- Time-of-day greeting -->
+    <p class="greeting" id="greeting">Good afternoon</p>
+
+    <!-- Logo lockup -->
+    <div class="logo-lockup">
+      <!-- Claude asterisk -->
+      <svg class="claude-asterisk" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#c96442" stroke-width="10" stroke-linecap="round">
+          <line x1="50" y1="50" x2="50" y2="13"/>
+          <line x1="50" y1="50" x2="80.3" y2="31.5"/>
+          <line x1="50" y1="50" x2="80.3" y2="68.5"/>
+          <line x1="50" y1="50" x2="50" y2="87"/>
+          <line x1="50" y1="50" x2="19.7" y2="68.5"/>
+          <line x1="50" y1="50" x2="19.7" y2="31.5"/>
+        </g>
+      </svg>
+
+      <span class="connector">×</span>
+
+      <img class="primary-logo" src="primary-logo.png" alt="Primary">
+    </div>
+
+    <!-- Status -->
     <p class="status" id="status">Preparing your conversation</p>
     <div class="spinner" id="spinner"></div>
 
+    <!-- Fallback (shown if extension not detected) -->
     <div class="fallback" id="fallback">
       <p>The Claude Context Loader extension is required to auto-open conversations. Install it or copy the prompt manually.</p>
       <button class="btn" id="copy-btn">Copy Prompt</button>
@@ -111,15 +178,19 @@
   </div>
 
   <script>
+    // Time-of-day greeting
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+    document.getElementById("greeting").textContent = greeting;
+
     // Parse params from URL hash
-    // Format: #prompt=...&thinking=true
     function parseHash() {
-      const hash = window.location.hash.slice(1); // remove #
+      const hash = window.location.hash.slice(1);
       const params = new URLSearchParams(hash);
       return {
         prompt: params.get("prompt") || "",
         thinking: params.get("thinking") === "true",
-        submit: params.get("submit") !== "false", // default true
+        submit: params.get("submit") !== "false",
         project: params.get("project") || null,
       };
     }
@@ -127,12 +198,10 @@
     const config = parseHash();
 
     if (!config.prompt) {
-      document.getElementById("title").textContent = "No prompt provided";
       document.getElementById("status").textContent = "This link appears to be invalid.";
       document.getElementById("spinner").style.display = "none";
     }
 
-    // Wait for the extension to announce itself, then send the open request
     let extensionResponded = false;
 
     function sendOpenRequest() {
@@ -149,7 +218,6 @@
     }
 
     window.addEventListener("message", (e) => {
-      // Extension announces it's ready
       if (e.data?.type === "CLAUDE_CHAT_EXTENSION_READY") {
         sendOpenRequest();
       }
@@ -157,25 +225,20 @@
         document.getElementById("status").textContent = "Opening Claude in the background...";
       }
       if (e.data?.type === "CLAUDE_CHAT_SUBMITTED") {
-        document.getElementById("title").textContent = "Claude is thinking";
         document.getElementById("status").textContent = "Switching to your conversation...";
       }
       if (e.data?.type === "CLAUDE_CHAT_DONE") {
-        document.getElementById("title").textContent = "Done!";
         document.getElementById("status").textContent = "Your Claude conversation is ready.";
         document.getElementById("spinner").style.display = "none";
-        // Close this tab after a short delay
         setTimeout(() => window.close(), 1500);
       }
       if (e.data?.type === "CLAUDE_CHAT_ERROR") {
-        document.getElementById("title").textContent = "Something went wrong";
         document.getElementById("status").textContent = e.data.error || "Could not open Claude.";
         document.getElementById("spinner").style.display = "none";
         showFallback();
       }
     });
 
-    // Also poll for the extension in case we missed the announcement
     let checkCount = 0;
     const checkInterval = setInterval(() => {
       if (extensionResponded) { clearInterval(checkInterval); return; }
@@ -185,7 +248,6 @@
         clearInterval(checkInterval);
         if (!extensionResponded && config.prompt) {
           document.getElementById("spinner").style.display = "none";
-          document.getElementById("title").textContent = "Extension not detected";
           document.getElementById("status").textContent = "";
           showFallback();
         }
@@ -194,8 +256,6 @@
 
     function showFallback() {
       document.getElementById("fallback").classList.add("visible");
-
-      // Set manual link with ?q= param
       const claudeUrl = "https://claude.ai/new?q=" + encodeURIComponent(config.prompt);
       document.getElementById("manual-link").href = claudeUrl;
     }
