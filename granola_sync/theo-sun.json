@@ -1,0 +1,59 @@
+{
+  "user": "theo-sun",
+  "synced_at": "2026-02-27T01:16:32.287593+00:00",
+  "meetings_scanned": 4,
+  "themes": [
+    {
+      "name": "AI-Driven Investment Validation",
+      "description": "There is substantial potential for AI tools that can validate investment hypotheses through customer insights and data analysis. This can bridge the gap between subjective intuition and objective data in the investment decision-making process.",
+      "relevance": "high",
+      "source_meetings": [
+        "Zach / Jordan Weekly AI Jam"
+      ],
+      "analysis_angles": [
+        "pain_points",
+        "breakthroughs",
+        "whitespace"
+      ],
+      "key_details": "Discussion of AI applications in investment with emphasis on customer-driven research; signals of excitement surrounding Claude AI capabilities for generating business ideas."
+    },
+    {
+      "name": "Disruptive Cooling Technologies for AI Hardware",
+      "description": "As AI chips become increasingly powerful, there is a growing demand for innovative cooling solutions to maintain performance and reliability. This niche presents a unique opportunity for startups focusing on advanced cooling technologies tailored for AI and GPU applications.",
+      "relevance": "high",
+      "source_meetings": [
+        "Talent Discussion for Cooling Incubation"
+      ],
+      "analysis_angles": [
+        "pain_points",
+        "whitespace"
+      ],
+      "key_details": "Identified complexity in scaling cooling technologies from prototypes to production; potential for companies focusing on high-performance cooling solutions highlighted."
+    },
+    {
+      "name": "AI-Powered Email Management",
+      "description": "The overwhelming nature of email communication creates opportunities for AI tools that streamline email management and improve productivity. Innovations like categorizing emails and drafting responses can significantly enhance the efficiency of busy professionals.",
+      "relevance": "medium",
+      "source_meetings": [
+        "(O) Dev | Theo Sync Shu's Emails"
+      ],
+      "analysis_angles": [
+        "pain_points",
+        "whitespace"
+      ],
+      "key_details": "The Fixer tool was positively received for its ability to manage large volumes of emails and assist in drafting responses, signaling untapped potential in AI-driven email solutions."
+    },
+    {
+      "name": "Expert Research Network Utilization",
+      "description": "There is a notable gap in access to expert networks for B2B research, which presents an opportunity for services that can facilitate these connections. AI can play a pivotal role in helping investors tap into relevant expertise for better decision-making.",
+      "relevance": "medium",
+      "source_meetings": [
+        "Zach / Jordan Weekly AI Jam"
+      ],
+      "analysis_angles": [
+        "whitespace"
+      ],
+      "key_details": "Recognition of the need for streamlined access to expert networks and qualitative insights for investment validation."
+    }
+  ]
+}
