@@ -1,101 +1,59 @@
 {
   "user": "theo-sun-primary",
-  "synced_at": "2026-02-27T00:46:54.620595+00:00",
-  "meetings": [
+  "synced_at": "2026-02-27T01:06:47.113126+00:00",
+  "meetings_scanned": 4,
+  "themes": [
     {
-      "id": "462cd834-66f5-4735-8b86-d91f02c7744d",
-      "title": "Zach / Jordan Weekly AI Jam",
-      "date": "2026-02-25T19:02:15.087Z",
-      "attendees": [
-        "Jordan Fox",
-        "Zach Fredericks",
-        "jordan.fox@primary.vc",
-        "zach@primary.vc",
-        "theo@primary.vc"
+      "name": "AI-Powered Email Management Solutions",
+      "description": "There is a growing need for AI-driven tools that can efficiently manage and streamline email communications in response to increasing email overload. Potential startups could focus on developing integrated systems that not only automate email organization but also enhance response efficiency by connecting with existing email platforms.",
+      "relevance": "high",
+      "source_meetings": [
+        "(O) Dev | Theo Sync Shu's Emails"
       ],
-      "notes": ""
+      "analysis_angles": [
+        "pain_points",
+        "whitespace"
+      ],
+      "key_details": "Problems like email overload and inefficient response times hinder productivity. Current tools like Fixer are limited in their capabilities, revealing an opportunity for more comprehensive solutions that access multiple inboxes and integrate with users' email systems."
     },
     {
-      "id": "4afd38ed-f329-4b8e-ae8f-0de7812b044d",
-      "title": "(O) Dev | Theo Sync Shu's Emails",
-      "date": "2026-02-25T17:34:21.044Z",
-      "attendees": [
-        "Primary Office-14-The Library (40)",
-        "Devon",
-        "devon@primary.vc",
-        "theo@primary.vc"
+      "name": "Advanced Cooling Technologies for AI Chips",
+      "description": "The rising power demands of AI chips highlight an underexplored niche in cooling technology, particularly for high-performance GPU applications. Startups in this space could capitalize on the increasing recognition of cooling as a vital component in AI infrastructure by offering innovative solutions that facilitate transitioning from prototypes to mass production.",
+      "relevance": "high",
+      "source_meetings": [
+        "Talent Discussion for Cooling Incubation"
       ],
-      "notes": ""
+      "analysis_angles": [
+        "pain_points",
+        "whitespace"
+      ],
+      "key_details": "Challenges in transitioning from prototypes to mass production in cooling systems for AI chips were discussed. Key players like Delta Electronics highlight the current lack of innovation, suggesting a strong market gap for new entrants focusing on cooling solutions."
     },
     {
-      "id": "d0b62246-3a13-4a06-8df8-b0eccf95453b",
-      "title": "Talent Discussion for Cooling Incubation",
-      "date": "2026-02-24T17:32:47.924Z",
-      "attendees": [
-        "Bridget Flaherty",
-        "Rpantone",
-        "Barbara Aprilakis",
-        "Primary Office-13-Fort Greene (6)",
-        "bridget@primary.vc",
-        "rpantone@primary.vc",
-        "theo@primary.vc",
-        "barbara@primary.vc"
+      "name": "Intelligent Aggregation of Market Insights",
+      "description": "There is a significant demand for tools that can aggregate diverse customer insights and market claims to facilitate informed investment decisions. Startups could innovate around using advanced AI and LLM capabilities to create tailored insights for investors, filling gaps in existing data aggregation tools that currently struggle with personalization.",
+      "relevance": "medium",
+      "source_meetings": [
+        "Zach / Jordan Weekly AI Jam"
       ],
-      "notes": ""
+      "analysis_angles": [
+        "pain_points",
+        "whitespace"
+      ],
+      "key_details": "Noted gaps in actionable insights from existing databases reveal an opportunity. Leveraging platforms like Claude alongside AlphaSense could enhance market analysis, providing granular data for investment strategies."
     },
     {
-      "id": "5ab54deb-818d-40d7-a79a-6ae0ad3ef596",
-      "title": "Adam <> Theo Discovery meeting",
-      "date": "2026-02-20T20:00:59.496Z",
-      "attendees": [
-        "Adam Piasecki",
-        "theo@primary.vc",
-        "adam@primary.vc"
+      "name": "Next-Gen SaaS for SMBs",
+      "description": "The SaaS sector for small to mid-sized businesses (SMBs) remains ripe for innovation, especially as traditional solutions become outdated. Startups that can offer tailored, modern solutions to automate business processes could effectively meet the evolving needs of this market segment.",
+      "relevance": "medium",
+      "source_meetings": [
+        "Zach / Jordan Weekly AI Jam"
       ],
-      "notes": ""
-    },
-    {
-      "id": "b23cf915-ce3f-4a7f-be1f-9ba551822143",
-      "title": "OIR Standup",
-      "date": "2026-02-20T16:59:49.645Z",
-      "attendees": [
-        "Bridget Flaherty",
-        "Tanmaye Bhatia",
-        "Barbara Aprilakis",
-        "Primary Office-13-Tompkins Square (5)",
-        "Marcela Sapone",
-        "Rpantone",
-        "Msmith",
-        "Kieran Chacko",
-        "swolf@primary.vc",
-        "bridget@primary.vc",
-        "dsteinberg@primary.vc",
-        "tanmaye@primary.vc",
-        "barbara@primary.vc",
-        "marcela@primary.vc",
-        "mlitre@primary.vc",
-        "jlango@primary.vc",
-        "rpantone@primary.vc",
-        "msmith@primary.vc",
-        "kieran@primary.vc",
-        "theo@primary.vc"
+      "analysis_angles": [
+        "breakthroughs",
+        "whitespace"
       ],
-      "notes": ""
-    },
-    {
-      "id": "d78193cf-f6c9-411c-bcc0-e44f747a2226",
-      "title": "Friday Standup/Retro",
-      "date": "2026-02-20T15:31:09.797Z",
-      "attendees": [
-        "Jordan Fox",
-        "Logan Nash",
-        "Tanmaye Bhatia",
-        "jordan.fox@primary.vc",
-        "logan@primary.vc",
-        "tanmaye@primary.vc",
-        "theo@primary.vc"
-      ],
-      "notes": ""
+      "key_details": "Discussion around Doppler as a better solution in a tech-dominated industry suggests a need for more sophisticated platforms. Such innovations will empower SMBs with efficient tools that are currently lacking in the market."
     }
   ]
 }
