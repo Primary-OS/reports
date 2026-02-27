@@ -1,0 +1,101 @@
+{
+  "user": "theo-sun-primary",
+  "synced_at": "2026-02-27T00:46:54.620595+00:00",
+  "meetings": [
+    {
+      "id": "462cd834-66f5-4735-8b86-d91f02c7744d",
+      "title": "Zach / Jordan Weekly AI Jam",
+      "date": "2026-02-25T19:02:15.087Z",
+      "attendees": [
+        "Jordan Fox",
+        "Zach Fredericks",
+        "jordan.fox@primary.vc",
+        "zach@primary.vc",
+        "theo@primary.vc"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "4afd38ed-f329-4b8e-ae8f-0de7812b044d",
+      "title": "(O) Dev | Theo Sync Shu's Emails",
+      "date": "2026-02-25T17:34:21.044Z",
+      "attendees": [
+        "Primary Office-14-The Library (40)",
+        "Devon",
+        "devon@primary.vc",
+        "theo@primary.vc"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "d0b62246-3a13-4a06-8df8-b0eccf95453b",
+      "title": "Talent Discussion for Cooling Incubation",
+      "date": "2026-02-24T17:32:47.924Z",
+      "attendees": [
+        "Bridget Flaherty",
+        "Rpantone",
+        "Barbara Aprilakis",
+        "Primary Office-13-Fort Greene (6)",
+        "bridget@primary.vc",
+        "rpantone@primary.vc",
+        "theo@primary.vc",
+        "barbara@primary.vc"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "5ab54deb-818d-40d7-a79a-6ae0ad3ef596",
+      "title": "Adam <> Theo Discovery meeting",
+      "date": "2026-02-20T20:00:59.496Z",
+      "attendees": [
+        "Adam Piasecki",
+        "theo@primary.vc",
+        "adam@primary.vc"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "b23cf915-ce3f-4a7f-be1f-9ba551822143",
+      "title": "OIR Standup",
+      "date": "2026-02-20T16:59:49.645Z",
+      "attendees": [
+        "Bridget Flaherty",
+        "Tanmaye Bhatia",
+        "Barbara Aprilakis",
+        "Primary Office-13-Tompkins Square (5)",
+        "Marcela Sapone",
+        "Rpantone",
+        "Msmith",
+        "Kieran Chacko",
+        "swolf@primary.vc",
+        "bridget@primary.vc",
+        "dsteinberg@primary.vc",
+        "tanmaye@primary.vc",
+        "barbara@primary.vc",
+        "marcela@primary.vc",
+        "mlitre@primary.vc",
+        "jlango@primary.vc",
+        "rpantone@primary.vc",
+        "msmith@primary.vc",
+        "kieran@primary.vc",
+        "theo@primary.vc"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "d78193cf-f6c9-411c-bcc0-e44f747a2226",
+      "title": "Friday Standup/Retro",
+      "date": "2026-02-20T15:31:09.797Z",
+      "attendees": [
+        "Jordan Fox",
+        "Logan Nash",
+        "Tanmaye Bhatia",
+        "jordan.fox@primary.vc",
+        "logan@primary.vc",
+        "tanmaye@primary.vc",
+        "theo@primary.vc"
+      ],
+      "notes": ""
+    }
+  ]
+}
