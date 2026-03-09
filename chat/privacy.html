@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varick — Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f5f0ea;
+      color: #3a2e28;
+      display: flex;
+      justify-content: center;
+      padding: 48px 24px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .updated {
+      font-size: 0.8rem;
+      color: #9c8070;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #7a6a60;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p, li {
+      font-size: 0.875rem;
+      color: #3a2e28;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    li { margin-bottom: 0.35rem; }
+
+    a {
+      color: #c96442;
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ddd5ca;
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: March 9, 2026</p>
+
+    <p>Varick is a Chrome extension that orchestrates multi-LLM research and delivers results into Claude.ai. This policy explains what data the extension accesses, how it is used, and how it is stored.</p>
+
+    <h2>Data We Collect</h2>
+    <p>Varick does not collect, transmit, or store any data on external servers operated by us. All data remains on your device or is sent directly to third-party AI APIs that you configure.</p>
+
+    <h2>Data Stored Locally</h2>
+    <ul>
+      <li><strong>API keys</strong> — Your OpenAI, Google Gemini, and xAI API keys are stored in Chrome's local storage on your device. They are never sent to our servers.</li>
+      <li><strong>Pipeline state</strong> — Temporary state (current phase, job IDs, research reports) is stored locally while a research pipeline is running and cleared on completion or reset.</li>
+      <li><strong>User preferences</strong> — Toggle settings (subagent enable, test mode) are stored locally.</li>
+    </ul>
+
+    <h2>Data Sent to Third Parties</h2>
+    <p>When you run the research pipeline, Varick sends your question and conversation context directly to the following APIs using your own API keys:</p>
+    <ul>
+      <li><strong>OpenAI API</strong> (api.openai.com) — For o4-mini orchestration, o3-deep-research, and o3 reconciliation</li>
+      <li><strong>Google Gemini API</strong> (generativelanguage.googleapis.com) — For Gemini deep-research</li>
+      <li><strong>xAI API</strong> (api.x.ai) — For Grok X/Twitter intelligence (optional, only if you provide an xAI key)</li>
+    </ul>
+    <p>These requests go directly from your browser to the respective API endpoints. Varick does not proxy, log, or intercept this traffic.</p>
+
+    <h2>Website Content Accessed</h2>
+    <p>The extension reads content from the Claude.ai editor (your typed question) and conversation history to provide context to the research pipeline. This content is only used locally and sent to the AI APIs listed above at your request.</p>
+
+    <h2>Data We Do Not Collect</h2>
+    <ul>
+      <li>No personally identifiable information</li>
+      <li>No browsing history or web activity</li>
+      <li>No analytics, telemetry, or usage tracking</li>
+      <li>No cookies or cross-site tracking</li>
+    </ul>
+
+    <h2>Data Sharing</h2>
+    <p>We do not sell, transfer, or share any user data with third parties. Your API keys and research content are only transmitted to the AI services you have explicitly configured.</p>
+
+    <h2>Data Retention</h2>
+    <p>All locally stored data can be cleared at any time via the extension's Settings page ("Clear" button) or by uninstalling the extension. Pipeline state is automatically cleared when a research run completes or is cancelled.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>If we update this policy, the revised version will be posted at this URL with an updated date.</p>
+
+    <hr class="divider">
+
+    <p>Questions? Contact us at <a href="mailto:theo@primaryos.com">theo@primaryos.com</a>.</p>
+  </div>
+</body>
+</html>
